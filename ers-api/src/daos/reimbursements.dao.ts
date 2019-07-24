@@ -8,12 +8,15 @@ export async function findReimbursementByStatusId(statusId: number): Promise<Rei
     try {
         client = await connectionPool.connect();
         const queryString = `
-            SELECT r.*, rs.status_name, rt.type_name, u.username, u.user_password, u.first_name, u.last_name, u.email, ur.*
-            FROM reimbursement r
-                JOIN reimbursement_status rs USING (status_id) 
-                JOIN reimbursement_type rt USING (type_id)
-                JOIN app_user u ON (author_id = user_id)
-                JOIN user_role ur ON (u.role_id = ur.role_id)
+        SELECT r.*, rs.status_name, rt.type_name, author.username as author_username, author.user_password as author_password, author.first_name as author_first_name, author.last_name as author_last_name, author.email as author_email, author.role_id as author_role_id, ar.role_type as author_role_type,
+        resolver.username as resolver_username, resolver.user_password as resolver_password, resolver.first_name as resolver_first_name, resolver.last_name as resolver_last_name, resolver.email as resolver_email, resolver.role_id as resolver_role_id, rr.role_type as resolver_role_type
+        FROM reimbursement r
+            LEFT JOIN reimbursement_status rs USING (status_id) 
+            LEFT JOIN reimbursement_type rt USING (type_id)
+            LEFT JOIN app_user author ON (author_id = author.user_id)
+            LEFT JOIN user_role ar ON (author.role_id = ar.role_id)
+            LEFT JOIN app_user resolver ON (resolver = resolver.user_id)
+            LEFT JOIN user_role rr ON (resolver.role_id = rr.role_id)
             WHERE status_id = $1
         `
         const result = await client.query(queryString, [statusId]);
@@ -31,12 +34,15 @@ export async function findReimbursementByAuthorId(userId: number): Promise<Reimb
     try {
         client = await connectionPool.connect();
         const queryString = `
-            SELECT r.*, rs.status_name, rt.type_name, u.username, u.user_password, u.first_name, u.last_name, u.email, ur.*
-            FROM reimbursement r
-                JOIN reimbursement_status rs USING (status_id) 
-                JOIN reimbursement_type rt USING (type_id)
-                JOIN app_user u ON (author_id = user_id)
-                JOIN user_role ur ON (u.role_id = ur.role_id)
+        SELECT r.*, rs.status_name, rt.type_name, author.username as author_username, author.user_password as author_password, author.first_name as author_first_name, author.last_name as author_last_name, author.email as author_email, author.role_id as author_role_id, ar.role_type as author_role_type,
+        resolver.username as resolver_username, resolver.user_password as resolver_password, resolver.first_name as resolver_first_name, resolver.last_name as resolver_last_name, resolver.email as resolver_email, resolver.role_id as resolver_role_id, rr.role_type as resolver_role_type
+        FROM reimbursement r
+            LEFT JOIN reimbursement_status rs USING (status_id) 
+            LEFT JOIN reimbursement_type rt USING (type_id)
+            LEFT JOIN app_user author ON (author_id = author.user_id)
+            LEFT JOIN user_role ar ON (author.role_id = ar.role_id)
+            LEFT JOIN app_user resolver ON (resolver = resolver.user_id)
+            LEFT JOIN user_role rr ON (resolver.role_id = rr.role_id)
             WHERE author_id = $1
         `
         const result = await client.query(queryString, [userId]);
@@ -52,18 +58,23 @@ export async function findReimbursementByAuthorId(userId: number): Promise<Reimb
 export async function findReimbursementById(userId: number): Promise<Reimbursement> {
     let client: PoolClient;
     try {
+        console.log(userId);
         client = await connectionPool.connect();
         const queryString = `
-        SELECT r.*, rs.status_name, rt.type_name, u.username, u.user_password, u.first_name, u.last_name, u.email, ur.*
+        SELECT r.*, rs.status_name, rt.type_name, author.username as author_username, author.user_password as author_password, author.first_name as author_first_name, author.last_name as author_last_name, author.email as author_email, author.role_id as author_role_id, ar.role_type as author_role_type,
+			resolver.username as resolver_username, resolver.user_password as resolver_password, resolver.first_name as resolver_first_name, resolver.last_name as resolver_last_name, resolver.email as resolver_email, resolver.role_id as resolver_role_id, rr.role_type as resolver_role_type
             FROM reimbursement r
-                JOIN reimbursement_status rs USING (status_id) 
-                JOIN reimbursement_type rt USING (type_id)
-                JOIN app_user u ON (author_id = user_id)
-                JOIN user_role ur ON (u.role_id = ur.role_id)
+                LEFT JOIN reimbursement_status rs USING (status_id) 
+                LEFT JOIN reimbursement_type rt USING (type_id)
+                LEFT JOIN app_user author ON (author_id = author.user_id)
+                LEFT JOIN user_role ar ON (author.role_id = ar.role_id)
+				LEFT JOIN app_user resolver ON (resolver = resolver.user_id)
+                LEFT JOIN user_role rr ON (resolver.role_id = rr.role_id)
             WHERE reimbursement_id = $1
         `
         const result = await client.query(queryString, [userId]);
         const reimbursement = result.rows[0];
+        console.log(reimbursement);
         return convertSqlReimbursements(reimbursement);
     } catch (err) {
         console.log(err);
