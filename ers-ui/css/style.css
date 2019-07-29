@@ -1,0 +1,52 @@
+.form-signin{
+    background: rgb(153, 153, 245);
+    border: 2px solid black;
+    border-radius: 10%;
+  }
+  body{
+      background: rgb(42, 37, 93);
+  }
+  .select-users .btn-primary{
+      border: 1px solid black;
+      border-radius: 50%;
+      background: rgb(44, 44, 151)
+  }
+ .select-users .btn-custom{
+    margin: 2em 10em;
+    padding: 2em 4em;
+}
+.select-users{
+    width: fit-content;
+    margin: 0 auto;
+}
+.insert{
+    color: rgb(212, 212, 212);
+}
+.insert h1{
+    text-align: center;
+}
+.insert div{
+    width: fit-content;
+    margin: 0 auto;
+}
+.insert label{
+    font-size: 20px;
+}
+.insert label, .insert input {
+    margin-right: 10px;
+}
+.insert table{
+    width: fit-content;
+    margin: 10px auto;
+}
+.insert table, .insert tr, .insert td, .insert th, .insert tbody, .insert thead {
+    padding: 10px;
+    border: 3px solid #117a8b;
+    border-collapse: collapse;
+}
+.insert th, .insert td{
+    text-align: center;
+}
+.display-users .display-header{
+    display:none;
+}
