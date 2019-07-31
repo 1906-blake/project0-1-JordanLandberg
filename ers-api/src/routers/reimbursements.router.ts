@@ -17,6 +17,17 @@ reimbursementsRouter.get('/status/:statusId', [
     }]);
 
 /**
+ * /reimbursements
+ * find all reimbursements based off status id
+ */
+reimbursementsRouter.get('', [
+    //authMiddleware('admin', 'finance-manager'),
+    async (req, res) => {
+        const users = await reimbursementDao.findAllReimbursement()
+        res.json(users);
+    }]);
+
+/**
  * /reimbursements/author/:userId
  * find all reimbursements based off users id
  */
