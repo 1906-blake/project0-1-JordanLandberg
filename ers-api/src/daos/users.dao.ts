@@ -11,10 +11,9 @@ export async function findByUsernameAndPassword(username: string, password: stri
         SELECT * FROM app_user JOIN user_role USING (role_id)
                 WHERE username = $1 AND user_password = $2
         `
-        console.log(username, password)
         const result = await client.query(queryString, [username, password]);
         const sqlUser = result.rows[0];
-        return convertSqlUser(sqlUser);
+        return sqlUser && convertSqlUser(sqlUser);
     } catch (err) {
         console.log(err)
     } finally {
@@ -27,7 +26,7 @@ export async function findAll(): Promise<User[]> {
     let client: PoolClient;
     try {
         client = await connectionPool.connect();
-        const queryString = `SELECT * FROM app_user JOIN user_role USING (role_id)`
+        const queryString = `SELECT * FROM app_user JOIN user_role USING (role_id) ORDER BY user_id`
         const result = await client.query(queryString);
         return result.rows.map(convertSqlUser);
     } catch (err) {

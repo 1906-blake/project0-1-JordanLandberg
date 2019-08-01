@@ -15,6 +15,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
+
 /**
  * Session middleware to give us access to req.session for session data
  */
@@ -38,6 +39,11 @@ app.use((req, resp, next) => {
 app.use('/users', usersRouter);
 app.use('/reimbursements', reimbursementsRouter);
 app.use(authRouter);
+
+// app.use((req, res, next) => {
+//     console.log(req.session.user)
+//     next();
+// })
 
 app.listen(port, () => {
     console.log(`app started on port: ${port}`);

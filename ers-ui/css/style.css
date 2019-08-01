@@ -2,16 +2,16 @@
     background: rgb(153, 153, 245);
     border: 2px solid black;
     border-radius: 10%;
-  }
-  body{
-      background: rgb(42, 37, 93);
-  }
-  .select-users .btn-primary{
-      border: 1px solid black;
-      border-radius: 50%;
-      background: rgb(44, 44, 151)
-  }
- .select-users .btn-custom{
+}
+body{
+    background: rgb(42, 37, 93);
+}
+.select-users .btn-primary{
+    border: 1px solid black;
+    border-radius: 50%;
+    background: rgb(44, 44, 151)
+}
+.select-users .btn-custom{
     margin: 2em 10em;
     padding: 2em 4em;
 }

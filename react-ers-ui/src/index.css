@@ -22,15 +22,9 @@ code {
 .margin-nav {
   margin-right: 2em
 }
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-  color: rgba(0,0,0,.7);
-}
 .navbar-expand-md .navbar-nav .nav-link {
   padding-right: .75rem !important;
   padding-left: .75rem !important;
-}
-.bg-light {
-  background-color: #ffffff !important;
 }
 nav {
   border-bottom: 1px solid #ffffff !important;
@@ -39,18 +33,122 @@ nav {
   -moz-box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);
   box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);
 }
+nav a{
+    color: #777;
+}
 #examples-dropdown {
   cursor: pointer;
 }
-/******************
-Clicker
-******************/
-.green {
-    color:green;
+
+/*************************************
+  LOGIN
+**************************************/
+html,
+body {
+  height: 100%;
 }
-.yellow {
-    color:yellow;
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 10% auto;
 }
-.red {
-    color:red;
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+/************************
+  LOGIN CONTINUED
+************************/
+.form-signin{
+    background: rgb(119, 119, 119);
+    border: 2px solid black;
+    border-radius: 10%;
+}
+.form-signin h1{
+    color: rgba(0,0,0,.7);
+}
+body{
+    background: rgb(228, 228, 228);
+}
+.select-users .btn-primary{
+    border: 1px solid black;
+    border-radius: 50%;
+    background: rgb(44, 44, 151)
+}
+.select-users .btn-custom{
+    margin: 2em 2.5em;
+    padding: 2em 4em;
+}
+.select-users{
+    width: fit-content;
+    margin: 0 auto;
+}
+.insert{
+    color: rgb(212, 212, 212);
+}
+.insert h1{
+    text-align: center;
+}
+.insert div{
+    width: fit-content;
+    margin: 0 auto;
+}
+.insert label{
+    font-size: 20px;
+}
+.insert label, .insert input {
+    margin-right: 10px;
+}
+.insert table{
+    width: fit-content;
+    margin: 10px auto;
+}
+.insert table, .insert tr, .insert td, .insert th, .insert tbody, .insert thead {
+    padding: 10px;
+    border: 3px solid #117a8b;
+    border-collapse: collapse;
+}
+.insert th, .insert td{
+    text-align: center;
+}
+.display-users .display-header{
+    display:none;
+}
+.btn a{
+    color: rgb(68, 68, 68);
+}
+
+/************************
+  DASHBOARD
+************************/
+.dashboard p{
+    font-size: 20px;
+}
+
+/************************
+  REIMBURSEMENT TABLE
+************************/
+.reimbursement-table-container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
