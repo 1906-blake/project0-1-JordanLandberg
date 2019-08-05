@@ -43,7 +43,6 @@ export default class LoginComponent extends Component<RouteComponentProps, IStat
                 errorMessage: 'Invalid Credentials'
             })
         }
-
     }
 
     updateUsername = (event: React.ChangeEvent<HTMLInputElement>) => {

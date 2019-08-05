@@ -8,6 +8,11 @@ import LoginComponent from './components/login/login.component';
 import ReimbursementsComponent from './components/reimbursements/reimbursements.component';
 import UsersComponent from './components/users/users.component';
 import DashboardComponent from './components/dashboard/dashboard.componant';
+import ReimbursementsByAuthorComponent from './components/reimbursements/reimbursements-by-author-id.component';
+import ReimbursementsByStatusComponent from './components/reimbursements/reimbursements-by-status-id.component';
+import AllUsersComponent from './components/users/all-users.component';
+import UsersByUserIdComponent from './components/users/users-by-id.component';
+import ProfileComponent from './components/profile/profile.component';
 
 const App: React.FC = () => {
     return (
@@ -17,18 +22,16 @@ const App: React.FC = () => {
                 {/* The switch will only render the first route that matches */}
                 <Switch>
                     <Route path='/dashboard' component={DashboardComponent}/>
-                    <Route path='/profile' component={AllReimbursementsComponent}/>
-                    <Route path='/users/all' component={AllReimbursementsComponent}/>
-                    <Route path='/users/id' component={AllReimbursementsComponent}/>
-                    <Route path='/users/update' component={AllReimbursementsComponent}/>
+                    <Route path='/profile' component={ProfileComponent}/>
+                    <Route path='/users/all' component={AllUsersComponent}/>
+                    <Route path='/users/id' component={UsersByUserIdComponent}/>
                     <Route path='/users' component={UsersComponent}/>
                     <Route path='/login' component={LoginComponent}/>
                     <Route path='/reimbursements/all' component={AllReimbursementsComponent}/>
+                    <Route path='/reimbursements/author' component={ReimbursementsByAuthorComponent}/>
+                    <Route path='/reimbursements/status' component={ReimbursementsByStatusComponent}/>
                     <Route path='/reimbursements' component={ReimbursementsComponent}/>
-                    {/* <Route path='/reimbursements/status' component={AllReimbursementsComponent}/>
-                    <Route path='/reimbursements/author' component={AllReimbursementsComponent}/>
-                    <Route path='/reimbursements/update' component={AllReimbursementsComponent}/>
-                    <Route path='/reimbursements/create' component={AllReimbursementsComponent}/> */}
+                    {/* <Route path='/reimbursements/create' component={AllReimbursementsComponent}/> */}
                     <Route component={NotFound}/>
                 </Switch>
             </div> 

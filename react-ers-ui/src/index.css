@@ -152,3 +152,48 @@ body{
     max-width: 1200px;
     margin: 0 auto;
 }
+.reimbursement-table-container input {
+    width: 300px;
+    margin-right: 50px;
+    display: inline;
+    margin-bottom: 2em;
+}
+/************************
+  PROFILE
+************************/
+.profile-names li, .profile-information li, .profile-textbox-hide li {
+    list-style-type: none;
+}
+.profile-names{
+    text-align: right;
+}
+.profile-information{
+    text-align: left;
+}
+.profile-submit-button-displaynone{
+    display: none;
+}
+.profile-submit-button-display{
+    display: inline;
+}
+.profile-update-button-displaynone{
+    display: none;
+}
+.profile-update-button-display{
+    display: inline;
+}
+.update-textbox-hide{
+    display: none;
+}
+.update-textbox-show{
+    display: inline;
+}
+.update-information-hide{
+    display:none;
+}
+.update-information{
+    width: 300px;
+}
+.profile-names li, .update-information li{
+    margin-bottom: 24px;
+}

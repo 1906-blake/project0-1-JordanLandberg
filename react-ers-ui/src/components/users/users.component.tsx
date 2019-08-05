@@ -15,9 +15,6 @@ export default class UsersComponent extends Component {
                     <Link to="/users/id">
                         <button className="btn btn-secondary btn-lg btn-info btn-custom">View a User By User ID</button>
                     </Link>
-                    <Link to="/users/update">
-                        <button className="btn btn-secondary btn-lg btn-info btn-custom">Update User</button>
-                    </Link>
                 </div>
                 {/* <UserTableAll/>
                 <UserTableById/>

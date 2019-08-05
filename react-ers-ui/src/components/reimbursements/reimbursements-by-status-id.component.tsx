@@ -1,35 +1,22 @@
 import React, { Component } from 'react'
 import Reimbursement from '../../models/reimbursement';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
 import User from '../../models/user';
+import { Button } from 'reactstrap';
 
 interface IState {
     reimbursements: Reimbursement[],
+    statusId: number,
     loggedInUser?: User
 }
 
-export default class AllReimbursementsComponent extends Component<{}, IState> {
+export default class ReimbursementsByStatusComponent extends Component<{}, IState> {
     constructor(props: any) {
         super(props);
         this.state = {
             reimbursements: [],
+            statusId: 0
         };
-    }
-
-    async componentDidMount() {
-        const loggedInUserString = localStorage.getItem('user');
-        const loggedInUser = loggedInUserString && JSON.parse(loggedInUserString);
-        this.setState({
-            loggedInUser
-        })
-        const resp = await fetch('http://localhost:8012/reimbursements', {
-            credentials: 'include'
-        });
-        const reimbursements = await resp.json();
-        this.setState({
-            reimbursements
-        });
     }
 
     approveReimbursement = async (reimbursement: Reimbursement) => {
@@ -82,17 +69,40 @@ export default class AllReimbursementsComponent extends Component<{}, IState> {
         });
     }
 
+    reimbursementsByStatusId = async () => {
+        const resp = await fetch(`http://localhost:8012/reimbursements/status/${this.state.statusId}`, {
+            credentials: 'include'
+        });
+        const reimbursements = await resp.json();
+        this.setState({
+            reimbursements
+        });
+    }
+
+    updateReimbursement = (event: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            statusId: +event.target.value
+        });
+    }
+
     render() {
         const reimbursements = this.state.reimbursements;
         return (
             <div className="reimbursement-table-container select-users">
-                <h2>All Reimbursements</h2>
+                <h2>Reimbursements By Status ID</h2>
+                <label htmlFor="inputUsername" className="sr-only">StatusId</label>
+                <Link to="/reimbursements/all">
+                    <button className="btn btn-secondary btn-lg btn-info btn-custom">All Reimbursements</button>
+                </Link>
                 <Link to="/reimbursements/author/id">
-                    <button className="btn btn-secondary btn-lg btn-info btn-custom">All Reimbursements By Author ID</button>
+                <button className="btn btn-secondary btn-lg btn-info btn-custom">All Reimbursements By Author ID</button>
                 </Link>
-                <Link to="/reimbursements/status/id">
-                    <button className="btn btn-secondary btn-lg btn-info btn-custom">All Reimbursements By Status Type</button>
-                </Link>
+                <br/>
+                <span>Status ID(1:Pending | 2:Approved | 3:Denied): </span>
+                <input typeof="number" className="form-control"
+                    placeholder="number" value={this.state.statusId}
+                    onChange={this.updateReimbursement} required />
+                <button className="btn btn-success" onClick={this.reimbursementsByStatusId}>Submit</button>
                 <table className="table table-striped table-dark">
                     <thead>
                         <tr>
@@ -111,7 +121,7 @@ export default class AllReimbursementsComponent extends Component<{}, IState> {
                     <tbody>
                         {
                             reimbursements.map(reimbursement =>
-                                <tr key={'reimbursementId-'+reimbursement.reimbursementId}>
+                                <tr key={'reimbursementId-' + reimbursement.reimbursementId}>
                                     <td>{reimbursement.reimbursementId}</td>
                                     <td>{reimbursement.author && `${reimbursement.author.firstName} ${reimbursement.author.lastName}`}</td>
                                     <td>{reimbursement.amount}</td>

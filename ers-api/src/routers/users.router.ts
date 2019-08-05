@@ -24,6 +24,7 @@ usersRouter.get('/:id', [
     async (req, res) => {
         let id = req.params.id;
         const user = await userDao.findById(id);
+        console.log(user);
         res.json(user);
     }]);
 
@@ -35,6 +36,7 @@ usersRouter.patch('', [
     authMiddleware('admin'),
     async (req, res) => {
         let input = req.body;
+        console.log(input);
         let updatedUser = await userDao.updateUser(input);
         res.json(updatedUser);
     }]);

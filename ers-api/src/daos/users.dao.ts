@@ -37,7 +37,7 @@ export async function findAll(): Promise<User[]> {
     return undefined;
 }
 
-export async function findById(id: number): Promise<User> {
+export async function findById(id: number): Promise<User[]> {
     let client: PoolClient;
     try {
         client = await connectionPool.connect();
@@ -46,10 +46,7 @@ export async function findById(id: number): Promise<User> {
             WHERE user_id = $1
         `
         const result = await client.query(queryString, [id]);
-        const sqlUser = result.rows[0];
-        console.log(id);
-        console.log(sqlUser);
-        return convertSqlUser(sqlUser);
+        return result.rows.map(convertSqlUser);
     } catch (err) {
         console.log(err)
     } finally {
@@ -60,13 +57,17 @@ export async function findById(id: number): Promise<User> {
 
 export async function updateUser(user: User): Promise<User> {
     const oldUser = await findById(user.userId);
-    if (!oldUser) {
+    if (!oldUser[0]) {
         return undefined;
     }
     user = {
-        ...oldUser,
+        ...oldUser[0],
         ...user
     };
+    console.log('testing123');
+    console.log('testing123');
+    console.log('testing123');
+    console.log(user);
     let client: PoolClient;
     try {
         client = await connectionPool.connect();
