@@ -24,7 +24,6 @@ usersRouter.get('/:id', [
     async (req, res) => {
         let id = req.params.id;
         const user = await userDao.findById(id);
-        console.log(user);
         res.json(user);
     }]);
 

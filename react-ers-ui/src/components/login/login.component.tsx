@@ -66,7 +66,7 @@ export default class LoginComponent extends Component<RouteComponentProps, IStat
                     placeholder="Username" value={this.state.username}
                     onChange={this.updateUsername} required autoFocus />
                 <label htmlFor="inputUsername" className="sr-only">Password</label>
-                <input typeof="text" className="form-control"
+                <input typeof="password" className="form-control" name="password"
                     placeholder="Password" value={this.state.password}
                     onChange={this.updatePassword} required />
                 

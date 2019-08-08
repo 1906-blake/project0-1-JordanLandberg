@@ -120,22 +120,23 @@ export default class ReimbursementsByStatusComponent extends Component<{}, IStat
                     </thead>
                     <tbody>
                         {
-                            reimbursements.map(reimbursement =>
-                                <tr key={'reimbursementId-' + reimbursement.reimbursementId}>
-                                    <td>{reimbursement.reimbursementId}</td>
-                                    <td>{reimbursement.author && `${reimbursement.author.firstName} ${reimbursement.author.lastName}`}</td>
-                                    <td>{reimbursement.amount}</td>
-                                    <td>{reimbursement.dateSubmitted}</td>
-                                    <td>{reimbursement.dateResolved}</td>
-                                    <td>{reimbursement.description}</td>
-                                    <td>{reimbursement.resolver && `${reimbursement.resolver.firstName} ${reimbursement.resolver.lastName}`}</td>
-                                    <td>{reimbursement.status.status}</td>
-                                    <td>{reimbursement.type.type}</td>
-                                    <td>
-                                        <Button key={'reimbursementIdApprove-'+reimbursement.reimbursementId} color="success" onClick={() => this.approveReimbursement(reimbursement)}>Approve</Button>
-                                        <Button key={'reimbursementIdDeny-'+reimbursement.reimbursementId} color="danger" onClick={() => this.denyReimbursement(reimbursement)}>Deny</Button>
-                                    </td>
-                                </tr>)
+                        reimbursements.map(reimbursement =>
+                            <tr key={'reimbursementId-' + reimbursement.reimbursementId}>
+                                <td>{reimbursement.reimbursementId}</td>
+                                <td>{reimbursement.author && `${reimbursement.author.firstName} ${reimbursement.author.lastName}`}</td>
+                                <td>{reimbursement.amount}</td>
+                                <td>{reimbursement.dateSubmitted}</td>
+                                <td>{reimbursement.dateResolved}</td>
+                                <td>{reimbursement.description}</td>
+                                <td>{reimbursement.resolver && `${reimbursement.resolver.firstName} ${reimbursement.resolver.lastName}`}</td>
+                                <td>{reimbursement.status.status}</td>
+                                <td>{reimbursement.type.type}</td>
+                                <td>
+                                    <Button key={'reimbursementIdApprove-'+reimbursement.reimbursementId} color="success" onClick={() => this.approveReimbursement(reimbursement)}>Approve</Button>
+                                    <Button key={'reimbursementIdDeny-'+reimbursement.reimbursementId} color="danger" onClick={() => this.denyReimbursement(reimbursement)}>Deny</Button>
+                                </td>
+                            </tr>
+                        )
                         }
                     </tbody>
                 </table>

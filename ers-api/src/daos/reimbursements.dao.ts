@@ -153,6 +153,7 @@ export async function updateReimbursement(reimbursement: Reimbursement): Promise
         ...oldReimbursement,
         ...reimbursement
     };
+    console.log(reimbursement);
     let client: PoolClient;
     try {
         client = await connectionPool.connect();
@@ -169,6 +170,7 @@ export async function updateReimbursement(reimbursement: Reimbursement): Promise
         WHERE reimbursement_id = $9
         `
         const constraints = [reimbursement.author.userId, reimbursement.amount, reimbursement.dateSubmitted, reimbursement.dateResolved, reimbursement.description, reimbursement.resolver && reimbursement.resolver.userId, reimbursement.status.statusId, reimbursement.type.typeId, reimbursement.reimbursementId];
+        console.log(constraints);
         await client.query(queryString, constraints);
         const newReimbursement = await findReimbursementById(reimbursement.reimbursementId);
         return newReimbursement;

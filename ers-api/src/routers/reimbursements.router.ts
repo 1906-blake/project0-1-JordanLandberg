@@ -46,6 +46,11 @@ reimbursementsRouter.get('/author/:userId', [
 reimbursementsRouter.post('', async (req, res) => {
     const reimbursement = req.body;
     const createdReimbursement = await reimbursementDao.createReimbursement(reimbursement);
+    if(createdReimbursement){
+        res.status(200);
+    } else {
+        res.status(400);
+    }
     res.json(createdReimbursement);
 });
 

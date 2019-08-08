@@ -53,8 +53,8 @@ export default class ProfileComponent extends Component<{}, IState> {
         // remove 'Update' button
         const updateButton = document.getElementsByClassName('profile-update-button-display')[0];
         updateButton.classList.remove('profile-update-button-display-display');
-        updateButton.classList.add('profile-update-button-display-displaynone');
-        // remove 'Add Submit Update' button
+        updateButton.classList.add('d-none');
+        // add 'Add Submit Update' button
         const submitButton = document.getElementsByClassName('profile-submit-button-displaynone')[0];
         submitButton.classList.remove('profile-submit-button-displaynone');
         submitButton.classList.add('profile-submit-button-display');
@@ -77,7 +77,7 @@ export default class ProfileComponent extends Component<{}, IState> {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             email: this.state.email
-        }
+        };
         await fetch(`http://localhost:8012/users`, {
             method: 'PATCH',
             credentials: 'include',
@@ -85,7 +85,7 @@ export default class ProfileComponent extends Component<{}, IState> {
             headers: {
                 'content-type': 'application/json'
             }
-        })
+        });
     }
 
     updateUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,17 +123,18 @@ export default class ProfileComponent extends Component<{}, IState> {
                 <br/>
                 <br/>
                 <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-2">
                         <h3>Profile Pic</h3>
                         <br />
                         <img src="https://via.placeholder.com/250" alt="Placeholder Profile" />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-4">
                         <h3>Profile Information</h3>
                         <br />
                         <br />
                         <div className="row">
-                            <div className="col-md-6 profile-names">
+                            <div className="col-md-4 profile-names">
                                 <ul>
                                     <br/>
                                     <li><h5>Username: </h5></li>
@@ -143,7 +144,7 @@ export default class ProfileComponent extends Component<{}, IState> {
                                     <li><h5>Role: </h5></li>
                                 </ul>
                             </div>
-                            <div className="col-md-6 profile-information">
+                            <div className="col-md-8 profile-information">
                                 {
                                     users.map(user =>
                                         <ul className="update-information">
@@ -194,11 +195,12 @@ export default class ProfileComponent extends Component<{}, IState> {
                         </div>
                         <div className="row">
                             <div className="col-md-12">
-                                <button className="btn btn-secondary btn-info btn-custom profile-update-button-display" onClick={this.updateUserInformation}>Update</button>
+                                <button className="btn btn-secondary btn-info btn-custom profile-update-button-display" id="testing" onClick={this.updateUserInformation}>Update</button>
                                 <button className="btn btn-secondary btn-info btn-custom profile-submit-button-displaynone" onClick={this.updateUser}>Submit Update</button>
                             </div>
                         </div>
                     </div>
+                    <div className="col-md-3"></div>
                 </div>
                 <div className="reimbursement-table-container select-users">
                     <h2>{`${users[0] && users[0].firstName} ${users[0] && users[0].lastName}'s`} reimbursements</h2>

@@ -13,6 +13,7 @@ import ReimbursementsByStatusComponent from './components/reimbursements/reimbur
 import AllUsersComponent from './components/users/all-users.component';
 import UsersByUserIdComponent from './components/users/users-by-id.component';
 import ProfileComponent from './components/profile/profile.component';
+import CreateReimbursementComponent from './components/reimbursements/create-reimbursement.component';
 
 const App: React.FC = () => {
     return (
@@ -30,8 +31,8 @@ const App: React.FC = () => {
                     <Route path='/reimbursements/all' component={AllReimbursementsComponent}/>
                     <Route path='/reimbursements/author' component={ReimbursementsByAuthorComponent}/>
                     <Route path='/reimbursements/status' component={ReimbursementsByStatusComponent}/>
+                    <Route path='/reimbursements/create' component={CreateReimbursementComponent}/>
                     <Route path='/reimbursements' component={ReimbursementsComponent}/>
-                    {/* <Route path='/reimbursements/create' component={AllReimbursementsComponent}/> */}
                     <Route component={NotFound}/>
                 </Switch>
             </div> 
